@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>RefactBrainAI — Code Quality Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="logo">R✳</span><span><b>RefactBrainAI</b><small>CODE QUALITY ASSISTANT</small></span></a>
+    <p class="side-label">WORKSPACE</p>
+    <button class="nav active" id="analysisNav">⌘ &nbsp; Code analysis</button>
+    <button class="nav" id="historyNav">◷ &nbsp; Analysis history</button>
+    <div class="side-bottom"><span class="dot"></span><div><b>Cloud workspace</b><small id="cloudStatus">Checking service…</small></div></div>
+  </aside>
+  <main>
+    <header><span>Workspace&nbsp; / &nbsp;<b id="breadcrumb">Code analysis</b></span><span class="pill"><i></i> Globally hosted prototype</span></header>
+    <section class="intro"><p class="eyebrow">✳ CODE QUALITY WORKSPACE</p><h1>Make your code <em>better.</em></h1><p>Inspect Python code, understand potential issues, and explore practical ways to improve readability and maintainability.</p></section>
+
+    <section id="analysisView" class="grid">
+      <div class="panel editor-panel">
+        <div class="panel-head"><div><h2>Code input</h2><p>Paste or type a Python snippet to begin.</p></div><span class="language">● Python</span></div>
+        <div class="toolbar"><span>untitled.py</span><span><button id="load">Load sample</button><button id="clear">Clear</button></span></div>
+        <div class="editor"><div id="nums" aria-hidden="true">1</div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Python code input" placeholder="# Paste Python code here…"></textarea></div>
+        <div class="stats"><span id="count">1 line · 0 characters</span><span>Max 100,000 characters · Never paste secrets</span></div>
+        <div class="actions"><button class="secondary" id="reset">Reset sample</button><button class="primary" id="analyze">✳ &nbsp; Analyze code ↗</button></div>
+        <p class="notice" id="notice" role="status" aria-live="polite"></p>
+      </div>
+      <div>
+        <div class="result-head"><div><p class="eyebrow">YOUR RESULTS</p><h2>Analysis overview</h2></div><span class="pill" id="resultState">Awaiting code</span></div>
+        <div class="panel empty" id="empty"><div class="orb">✳</div><h3>Ready when you are</h3><p>Submit code to run the Python analysis engine.</p><div class="steps"><span>01 &nbsp; Add Python code</span><span>02 &nbsp; Review detected issues</span><span>03 &nbsp; Apply changes carefully</span></div></div>
+        <div class="panel result hidden" id="results">
+          <div class="summary-top"><span class="summary-icon">✓</span><div><h3 id="summaryTitle">Analysis complete</h3><p id="summaryText"></p></div></div>
+          <div class="metrics"><div><small>LINES</small><b id="lines">0</b></div><div><small>ISSUES</small><b id="issues">0</b></div><div><small>SAVED</small><b id="saved">No</b></div></div>
+          <div id="findingList" class="finding-list"></div>
+          <p class="engine-note">Rule-based static analysis. Suggestions are not guaranteed to preserve behavior; review and test before applying.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="historyView" class="hidden">
+      <div class="history-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Analysis history</h2><p>Recent analysis summaries saved to the cloud database.</p></div><button class="secondary" id="refreshHistory">↻ Refresh</button></div>
+      <div class="panel history-panel" id="historyList"><p class="muted">Loading history…</p></div>
+    </section>
+    <footer><span>RefactBrainAI · Student project prototype</span><span>Code is analyzed, never executed.</span></footer>
+  </main>
+</div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
